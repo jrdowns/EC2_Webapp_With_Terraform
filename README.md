@@ -40,3 +40,15 @@ The terraform apply command executes the actions proposed in a Terraform plan. W
 
 ### `terraform destroy`
 The terraform destroy command is a convenient way to destroy all remote objects managed by a particular Terraform configuration. Since this is just for pratice, I'll destroy the environment after it's been created.
+
+## Init
+First, I'll initialize the working directory with `terraform init`  
+![image](./pictures/terraform_init.png)
+
+## Plan
+Next, we'll check to make sure Terraform is going to do everything we expect by running `terraform plan`. Be careful if you save the output to a file, it will expose any keys that are referenced in the Terraform files.  
+![image](./pictures/terraform_plan.png)
+
+## Apply
+If the changes look good, I'll go ahead and apply them with `terraform apply`. This will build our resources in AWS. For the apply to proceed, you have to confirm the action by typing "yes" when prompted.  
+![image](./pictures/terraform_apply.png)
