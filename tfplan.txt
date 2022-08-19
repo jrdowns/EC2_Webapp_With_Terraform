@@ -1,0 +1,710 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create
+[0m
+Terraform will perform the following actions:
+
+[1m  # module.project-vpc.aws_eip.project_nat_eip[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_eip" "project_nat_eip" {
+      [32m+[0m [0m[1m[0mallocation_id[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0massociation_id[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mcarrier_ip[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mcustomer_owned_ip[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mdomain[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0minstance[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_border_group[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_interface[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_dns[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_ip[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_dns[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_ip[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_ipv4_pool[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mtags_all[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mvpc[0m[0m                  = true
+    }
+
+[1m  # module.project-vpc.aws_internet_gateway.project_igw[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_internet_gateway" "project_igw" {
+      [32m+[0m [0m[1m[0marn[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m     = {
+          [32m+[0m [0m"Name" = "development-project-vpc-internet-gateway"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m = {
+          [32m+[0m [0m"Name" = "development-project-vpc-internet-gateway"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m   = (known after apply)
+    }
+
+[1m  # module.project-vpc.aws_nat_gateway.project_ngw[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_nat_gateway" "project_ngw" {
+      [32m+[0m [0m[1m[0mallocation_id[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mconnectivity_type[0m[0m    = "public"
+      [32m+[0m [0m[1m[0mid[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_ip[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_ip[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                 = {
+          [32m+[0m [0m"Name" = "development-project-vpc-NAT-gateway"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m             = {
+          [32m+[0m [0m"Name" = "development-project-vpc-NAT-gateway"
+        }
+    }
+
+[1m  # module.project-vpc.aws_route_table.private[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_route_table" "private" {
+      [32m+[0m [0m[1m[0marn[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mpropagating_vgws[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mroute[0m[0m            = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcarrier_gateway_id         = ""
+              [32m+[0m [0mcidr_block                 = "0.0.0.0/0"
+              [32m+[0m [0mcore_network_arn           = ""
+              [32m+[0m [0mdestination_prefix_list_id = ""
+              [32m+[0m [0megress_only_gateway_id     = ""
+              [32m+[0m [0mgateway_id                 = (known after apply)
+              [32m+[0m [0minstance_id                = ""
+              [32m+[0m [0mipv6_cidr_block            = ""
+              [32m+[0m [0mlocal_gateway_id           = ""
+              [32m+[0m [0mnat_gateway_id             = ""
+              [32m+[0m [0mnetwork_interface_id       = ""
+              [32m+[0m [0mtransit_gateway_id         = ""
+              [32m+[0m [0mvpc_endpoint_id            = ""
+              [32m+[0m [0mvpc_peering_connection_id  = ""
+            },
+        ]
+      [32m+[0m [0m[1m[0mtags[0m[0m             = {
+          [32m+[0m [0m"Name" = "development-project-private-route-table"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m         = {
+          [32m+[0m [0m"Name" = "development-project-private-route-table"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m           = (known after apply)
+    }
+
+[1m  # module.project-vpc.aws_route_table.public[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_route_table" "public" {
+      [32m+[0m [0m[1m[0marn[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mpropagating_vgws[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mroute[0m[0m            = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcarrier_gateway_id         = ""
+              [32m+[0m [0mcidr_block                 = "0.0.0.0/0"
+              [32m+[0m [0mcore_network_arn           = ""
+              [32m+[0m [0mdestination_prefix_list_id = ""
+              [32m+[0m [0megress_only_gateway_id     = ""
+              [32m+[0m [0mgateway_id                 = (known after apply)
+              [32m+[0m [0minstance_id                = ""
+              [32m+[0m [0mipv6_cidr_block            = ""
+              [32m+[0m [0mlocal_gateway_id           = ""
+              [32m+[0m [0mnat_gateway_id             = ""
+              [32m+[0m [0mnetwork_interface_id       = ""
+              [32m+[0m [0mtransit_gateway_id         = ""
+              [32m+[0m [0mvpc_endpoint_id            = ""
+              [32m+[0m [0mvpc_peering_connection_id  = ""
+            },
+        ]
+      [32m+[0m [0m[1m[0mtags[0m[0m             = {
+          [32m+[0m [0m"Name" = "development-project-public-route-table"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m         = {
+          [32m+[0m [0m"Name" = "development-project-public-route-table"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m           = (known after apply)
+    }
+
+[1m  # module.project-vpc.aws_route_table_association.to_private_subnet1[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_route_table_association" "to_private_subnet1" {
+      [32m+[0m [0m[1m[0mid[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mroute_table_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m      = (known after apply)
+    }
+
+[1m  # module.project-vpc.aws_route_table_association.to_private_subnet2[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_route_table_association" "to_private_subnet2" {
+      [32m+[0m [0m[1m[0mid[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mroute_table_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m      = (known after apply)
+    }
+
+[1m  # module.project-vpc.aws_route_table_association.to_public_subnet1[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_route_table_association" "to_public_subnet1" {
+      [32m+[0m [0m[1m[0mid[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mroute_table_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m      = (known after apply)
+    }
+
+[1m  # module.project-vpc.aws_route_table_association.to_public_subnet2[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_route_table_association" "to_public_subnet2" {
+      [32m+[0m [0m[1m[0mid[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mroute_table_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m      = (known after apply)
+    }
+
+[1m  # module.project-vpc.aws_subnet.project_vpc_private_subnet_1[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_subnet" "project_vpc_private_subnet_1" {
+      [32m+[0m [0m[1m[0marn[0m[0m                                            = (known after apply)
+      [32m+[0m [0m[1m[0massign_ipv6_address_on_creation[0m[0m                = false
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m                              = "us-east-2a"
+      [32m+[0m [0m[1m[0mavailability_zone_id[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                                     = "10.0.1.0/24"
+      [32m+[0m [0m[1m[0menable_dns64[0m[0m                                   = false
+      [32m+[0m [0m[1m[0menable_resource_name_dns_a_record_on_launch[0m[0m    = false
+      [32m+[0m [0m[1m[0menable_resource_name_dns_aaaa_record_on_launch[0m[0m = false
+      [32m+[0m [0m[1m[0mid[0m[0m                                             = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block_association_id[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_native[0m[0m                                    = false
+      [32m+[0m [0m[1m[0mmap_public_ip_on_launch[0m[0m                        = false
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                                       = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_dns_hostname_type_on_launch[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                                           = {
+          [32m+[0m [0m"Name" = "development-project-vpc-private-subnet-1"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                                       = {
+          [32m+[0m [0m"Name" = "development-project-vpc-private-subnet-1"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                                         = (known after apply)
+    }
+
+[1m  # module.project-vpc.aws_subnet.project_vpc_private_subnet_2[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_subnet" "project_vpc_private_subnet_2" {
+      [32m+[0m [0m[1m[0marn[0m[0m                                            = (known after apply)
+      [32m+[0m [0m[1m[0massign_ipv6_address_on_creation[0m[0m                = false
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m                              = "us-east-2b"
+      [32m+[0m [0m[1m[0mavailability_zone_id[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                                     = "10.0.2.0/24"
+      [32m+[0m [0m[1m[0menable_dns64[0m[0m                                   = false
+      [32m+[0m [0m[1m[0menable_resource_name_dns_a_record_on_launch[0m[0m    = false
+      [32m+[0m [0m[1m[0menable_resource_name_dns_aaaa_record_on_launch[0m[0m = false
+      [32m+[0m [0m[1m[0mid[0m[0m                                             = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block_association_id[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_native[0m[0m                                    = false
+      [32m+[0m [0m[1m[0mmap_public_ip_on_launch[0m[0m                        = false
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                                       = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_dns_hostname_type_on_launch[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                                           = {
+          [32m+[0m [0m"Name" = "development-project-vpc-private-subnet-2"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                                       = {
+          [32m+[0m [0m"Name" = "development-project-vpc-private-subnet-2"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                                         = (known after apply)
+    }
+
+[1m  # module.project-vpc.aws_subnet.project_vpc_public_subnet_1[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_subnet" "project_vpc_public_subnet_1" {
+      [32m+[0m [0m[1m[0marn[0m[0m                                            = (known after apply)
+      [32m+[0m [0m[1m[0massign_ipv6_address_on_creation[0m[0m                = false
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m                              = "us-east-2a"
+      [32m+[0m [0m[1m[0mavailability_zone_id[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                                     = "10.0.101.0/24"
+      [32m+[0m [0m[1m[0menable_dns64[0m[0m                                   = false
+      [32m+[0m [0m[1m[0menable_resource_name_dns_a_record_on_launch[0m[0m    = false
+      [32m+[0m [0m[1m[0menable_resource_name_dns_aaaa_record_on_launch[0m[0m = false
+      [32m+[0m [0m[1m[0mid[0m[0m                                             = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block_association_id[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_native[0m[0m                                    = false
+      [32m+[0m [0m[1m[0mmap_public_ip_on_launch[0m[0m                        = true
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                                       = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_dns_hostname_type_on_launch[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                                           = {
+          [32m+[0m [0m"Name" = "development-project-vpc-public-subnet-1"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                                       = {
+          [32m+[0m [0m"Name" = "development-project-vpc-public-subnet-1"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                                         = (known after apply)
+    }
+
+[1m  # module.project-vpc.aws_subnet.project_vpc_public_subnet_2[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_subnet" "project_vpc_public_subnet_2" {
+      [32m+[0m [0m[1m[0marn[0m[0m                                            = (known after apply)
+      [32m+[0m [0m[1m[0massign_ipv6_address_on_creation[0m[0m                = false
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m                              = "us-east-2b"
+      [32m+[0m [0m[1m[0mavailability_zone_id[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                                     = "10.0.102.0/24"
+      [32m+[0m [0m[1m[0menable_dns64[0m[0m                                   = false
+      [32m+[0m [0m[1m[0menable_resource_name_dns_a_record_on_launch[0m[0m    = false
+      [32m+[0m [0m[1m[0menable_resource_name_dns_aaaa_record_on_launch[0m[0m = false
+      [32m+[0m [0m[1m[0mid[0m[0m                                             = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block_association_id[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_native[0m[0m                                    = false
+      [32m+[0m [0m[1m[0mmap_public_ip_on_launch[0m[0m                        = true
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                                       = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_dns_hostname_type_on_launch[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                                           = {
+          [32m+[0m [0m"Name" = "development-project-vpc-public-subnet-2"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                                       = {
+          [32m+[0m [0m"Name" = "development-project-vpc-public-subnet-2"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                                         = (known after apply)
+    }
+
+[1m  # module.project-vpc.aws_vpc.project_vpc[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_vpc" "project_vpc" {
+      [32m+[0m [0m[1m[0marn[0m[0m                                  = (known after apply)
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                           = "10.0.0.0/16"
+      [32m+[0m [0m[1m[0mdefault_network_acl_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mdefault_route_table_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mdefault_security_group_id[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mdhcp_options_id[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0menable_classiclink[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0menable_classiclink_dns_support[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0menable_dns_hostnames[0m[0m                 = true
+      [32m+[0m [0m[1m[0menable_dns_support[0m[0m                   = true
+      [32m+[0m [0m[1m[0mid[0m[0m                                   = (known after apply)
+      [32m+[0m [0m[1m[0minstance_tenancy[0m[0m                     = "default"
+      [32m+[0m [0m[1m[0mipv6_association_id[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block_network_border_group[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mmain_route_table_id[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                                 = {
+          [32m+[0m [0m"Name" = "development-vpc"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                             = {
+          [32m+[0m [0m"Name" = "development-vpc"
+        }
+    }
+
+[1m  # module.project-webserver.aws_autoscaling_group.project_webserver[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_group" "project_webserver" {
+      [32m+[0m [0m[1m[0marn[0m[0m                       = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zones[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mdefault_cooldown[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mdesired_capacity[0m[0m          = 1
+      [32m+[0m [0m[1m[0mforce_delete[0m[0m              = true
+      [32m+[0m [0m[1m[0mforce_delete_warm_pool[0m[0m    = false
+      [32m+[0m [0m[1m[0mhealth_check_grace_period[0m[0m = 30
+      [32m+[0m [0m[1m[0mhealth_check_type[0m[0m         = "EC2"
+      [32m+[0m [0m[1m[0mid[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mlaunch_configuration[0m[0m      = "launch_config_webserver"
+      [32m+[0m [0m[1m[0mmax_size[0m[0m                  = 2
+      [32m+[0m [0m[1m[0mmetrics_granularity[0m[0m       = "1Minute"
+      [32m+[0m [0m[1m[0mmin_size[0m[0m                  = 1
+      [32m+[0m [0m[1m[0mname[0m[0m                      = "project_WebServers"
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mprotect_from_scale_in[0m[0m     = false
+      [32m+[0m [0m[1m[0mservice_linked_role_arn[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mtarget_group_arns[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mvpc_zone_identifier[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mwait_for_capacity_timeout[0m[0m = "10m"
+    }
+
+[1m  # module.project-webserver.aws_key_pair.project_key[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_key_pair" "project_key" {
+      [32m+[0m [0m[1m[0marn[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mfingerprint[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mkey_name[0m[0m        = "project_key"
+      [32m+[0m [0m[1m[0mkey_name_prefix[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mkey_pair_id[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mkey_type[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_key[0m[0m      = <<-EOT
+            -----BEGIN RSA PRIVATE KEY-----
+            # Key deleted for obvious reasons
+            -----END RSA PRIVATE KEY-----
+        EOT
+      [32m+[0m [0m[1m[0mtags_all[0m[0m        = (known after apply)
+    }
+
+[1m  # module.project-webserver.aws_launch_configuration.launch_config_webserver[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_launch_configuration" "launch_config_webserver" {
+      [32m+[0m [0m[1m[0marn[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mebs_optimized[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0menable_monitoring[0m[0m           = true
+      [32m+[0m [0m[1m[0mid[0m[0m                          = (known after apply)
+      [32m+[0m [0m[1m[0mimage_id[0m[0m                    = "ami-05692172625678b4e"
+      [32m+[0m [0m[1m[0minstance_type[0m[0m               = "t2.micro"
+      [32m+[0m [0m[1m[0mkey_name[0m[0m                    = "project_key"
+      [32m+[0m [0m[1m[0mname[0m[0m                        = "launch_config_webserver"
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0muser_data[0m[0m                   = "1c0f52a632509ca76757bc5dfcbe6f119b6d6bee"
+
+      [32m+[0m [0mebs_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mno_device[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0msnapshot_id[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mthroughput[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+
+      [32m+[0m [0mmetadata_options {
+          [32m+[0m [0m[1m[0mhttp_endpoint[0m[0m               = (known after apply)
+          [32m+[0m [0m[1m[0mhttp_put_response_hop_limit[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mhttp_tokens[0m[0m                 = (known after apply)
+        }
+
+      [32m+[0m [0mroot_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = true
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mthroughput[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = 20
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = "gp2"
+        }
+    }
+
+[1m  # module.project-webserver.aws_lb.project-load-balancer[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb" "project-load-balancer" {
+      [32m+[0m [0m[1m[0marn[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0marn_suffix[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mdesync_mitigation_mode[0m[0m     = "defensive"
+      [32m+[0m [0m[1m[0mdns_name[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mdrop_invalid_header_fields[0m[0m = false
+      [32m+[0m [0m[1m[0menable_deletion_protection[0m[0m = false
+      [32m+[0m [0m[1m[0menable_http2[0m[0m               = true
+      [32m+[0m [0m[1m[0menable_waf_fail_open[0m[0m       = false
+      [32m+[0m [0m[1m[0mid[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0midle_timeout[0m[0m               = 60
+      [32m+[0m [0m[1m[0minternal[0m[0m                   = false
+      [32m+[0m [0m[1m[0mip_address_type[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancer_type[0m[0m         = "application"
+      [32m+[0m [0m[1m[0mname[0m[0m                       = "development-project-lb"
+      [32m+[0m [0m[1m[0mpreserve_host_header[0m[0m       = false
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0msubnets[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mzone_id[0m[0m                    = (known after apply)
+
+      [32m+[0m [0msubnet_mapping {
+          [32m+[0m [0m[1m[0mallocation_id[0m[0m        = (known after apply)
+          [32m+[0m [0m[1m[0mipv6_address[0m[0m         = (known after apply)
+          [32m+[0m [0m[1m[0moutpost_id[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mprivate_ipv4_address[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0msubnet_id[0m[0m            = (known after apply)
+        }
+    }
+
+[1m  # module.project-webserver.aws_lb_listener.webserver_listner[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb_listener" "webserver_listner" {
+      [32m+[0m [0m[1m[0marn[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancer_arn[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mport[0m[0m              = 80
+      [32m+[0m [0m[1m[0mprotocol[0m[0m          = "HTTP"
+      [32m+[0m [0m[1m[0mssl_policy[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mtags_all[0m[0m          = (known after apply)
+
+      [32m+[0m [0mdefault_action {
+          [32m+[0m [0m[1m[0morder[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m             = "forward"
+        }
+    }
+
+[1m  # module.project-webserver.aws_lb_target_group.load-balancer-target-group[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb_target_group" "load-balancer-target-group" {
+      [32m+[0m [0m[1m[0marn[0m[0m                                = (known after apply)
+      [32m+[0m [0m[1m[0marn_suffix[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mconnection_termination[0m[0m             = false
+      [32m+[0m [0m[1m[0mderegistration_delay[0m[0m               = "300"
+      [32m+[0m [0m[1m[0mid[0m[0m                                 = (known after apply)
+      [32m+[0m [0m[1m[0mlambda_multi_value_headers_enabled[0m[0m = false
+      [32m+[0m [0m[1m[0mload_balancing_algorithm_type[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                               = "load-balancer-target-group"
+      [32m+[0m [0m[1m[0mport[0m[0m                               = 80
+      [32m+[0m [0m[1m[0mpreserve_client_ip[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mprotocol[0m[0m                           = "HTTP"
+      [32m+[0m [0m[1m[0mprotocol_version[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mproxy_protocol_v2[0m[0m                  = false
+      [32m+[0m [0m[1m[0mslow_start[0m[0m                         = 0
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mtarget_type[0m[0m                        = "instance"
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                             = (known after apply)
+
+      [32m+[0m [0mhealth_check {
+          [32m+[0m [0m[1m[0menabled[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0mhealthy_threshold[0m[0m   = (known after apply)
+          [32m+[0m [0m[1m[0minterval[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mmatcher[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0mpath[0m[0m                = (known after apply)
+          [32m+[0m [0m[1m[0mport[0m[0m                = (known after apply)
+          [32m+[0m [0m[1m[0mprotocol[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mtimeout[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0munhealthy_threshold[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mstickiness {
+          [32m+[0m [0m[1m[0mcookie_duration[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mcookie_name[0m[0m     = (known after apply)
+          [32m+[0m [0m[1m[0menabled[0m[0m         = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m            = (known after apply)
+        }
+    }
+
+[1m  # module.project-webserver.aws_security_group.project_webservers[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_security_group" "project_webservers" {
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m            = "Created by GitJames"
+      [32m+[0m [0m[1m[0megress[0m[0m                 = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mingress[0m[0m                = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 22
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 22
+            },
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 443
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 443
+            },
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 80
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 80
+            },
+        ]
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "development-project-webservers"
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
+      [32m+[0m [0m[1m[0mtags[0m[0m                   = {
+          [32m+[0m [0m"Name" = "development-project-webservers"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m               = {
+          [32m+[0m [0m"Name" = "development-project-webservers"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = (known after apply)
+    }
+
+[1m  # module.project-webserver.aws_security_group.project_webservers_alb[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_security_group" "project_webservers_alb" {
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m            = "Created by GitJames"
+      [32m+[0m [0m[1m[0megress[0m[0m                 = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mingress[0m[0m                = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 443
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 443
+            },
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 80
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 80
+            },
+        ]
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "development-project-webservers-ALB"
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
+      [32m+[0m [0m[1m[0mtags[0m[0m                   = {
+          [32m+[0m [0m"Name" = "development-project-webservers-ALB"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m               = {
+          [32m+[0m [0m"Name" = "development-project-webservers-ALB"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = (known after apply)
+    }
+
+[1m  # module.project-webserver.module.project-rds.aws_db_instance.project-rds[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_db_instance" "project-rds" {
+      [32m+[0m [0m[1m[0maddress[0m[0m                               = (known after apply)
+      [32m+[0m [0m[1m[0mallocated_storage[0m[0m                     = 20
+      [32m+[0m [0m[1m[0mapply_immediately[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0marn[0m[0m                                   = (known after apply)
+      [32m+[0m [0m[1m[0mauto_minor_version_upgrade[0m[0m            = true
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mbackup_retention_period[0m[0m               = 7
+      [32m+[0m [0m[1m[0mbackup_window[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mca_cert_identifier[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mcharacter_set_name[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mcopy_tags_to_snapshot[0m[0m                 = false
+      [32m+[0m [0m[1m[0mdb_name[0m[0m                               = (known after apply)
+      [32m+[0m [0m[1m[0mdb_subnet_group_name[0m[0m                  = "development-project-db-snet"
+      [32m+[0m [0m[1m[0mdelete_automated_backups[0m[0m              = true
+      [32m+[0m [0m[1m[0mendpoint[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mengine[0m[0m                                = "mysql"
+      [32m+[0m [0m[1m[0mengine_version[0m[0m                        = "8.0.20"
+      [32m+[0m [0m[1m[0mengine_version_actual[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mhosted_zone_id[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                                    = (known after apply)
+      [32m+[0m [0m[1m[0midentifier[0m[0m                            = "development-project-rds"
+      [32m+[0m [0m[1m[0midentifier_prefix[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0minstance_class[0m[0m                        = "db.t2.micro"
+      [32m+[0m [0m[1m[0mkms_key_id[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0mlatest_restorable_time[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mlicense_model[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mmaintenance_window[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mmonitoring_interval[0m[0m                   = 0
+      [32m+[0m [0m[1m[0mmonitoring_role_arn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mmulti_az[0m[0m                              = false
+      [32m+[0m [0m[1m[0mname[0m[0m                                  = (known after apply)
+      [32m+[0m [0m[1m[0mnchar_character_set_name[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0moption_group_name[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mparameter_group_name[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mpassword[0m[0m                              = (sensitive value)
+      [32m+[0m [0m[1m[0mperformance_insights_enabled[0m[0m          = false
+      [32m+[0m [0m[1m[0mperformance_insights_kms_key_id[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mperformance_insights_retention_period[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mport[0m[0m                                  = (known after apply)
+      [32m+[0m [0m[1m[0mpublicly_accessible[0m[0m                   = true
+      [32m+[0m [0m[1m[0mreplica_mode[0m[0m                          = (known after apply)
+      [32m+[0m [0m[1m[0mreplicas[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mresource_id[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0mskip_final_snapshot[0m[0m                   = false
+      [32m+[0m [0m[1m[0msnapshot_identifier[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mstatus[0m[0m                                = (known after apply)
+      [32m+[0m [0m[1m[0mstorage_type[0m[0m                          = "gp2"
+      [32m+[0m [0m[1m[0mtags_all[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mtimezone[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0musername[0m[0m                              = "testdb"
+      [32m+[0m [0m[1m[0mvpc_security_group_ids[0m[0m                = (known after apply)
+    }
+
+[1m  # module.project-webserver.module.project-rds.aws_db_subnet_group.project-rds-subnet-group[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_db_subnet_group" "project-rds-subnet-group" {
+      [32m+[0m [0m[1m[0marn[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m = "Allowed subnets for DB cluster instances"
+      [32m+[0m [0m[1m[0mid[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m        = "development-project-db-snet"
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_ids[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m        = {
+          [32m+[0m [0m"Name" = "development_project_db_subnet"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m    = {
+          [32m+[0m [0m"Name" = "development_project_db_subnet"
+        }
+    }
+
+[1m  # module.project-webserver.module.project-rds.aws_security_group.project-rds-sg[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_security_group" "project-rds-sg" {
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m            = "Created by GitJames"
+      [32m+[0m [0m[1m[0megress[0m[0m                 = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mingress[0m[0m                = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 3306
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 3306
+            },
+        ]
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "development-project-rds-sg"
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
+      [32m+[0m [0m[1m[0mtags[0m[0m                   = {
+          [32m+[0m [0m"Name" = "development-project-rds-sg"
+        }
+      [32m+[0m [0m[1m[0mtags_all[0m[0m               = {
+          [32m+[0m [0m"Name" = "development-project-rds-sg"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = (known after apply)
+    }
+
+[0m[1mPlan:[0m 25 to add, 0 to change, 0 to destroy.
+[0m[0m
+[1mChanges to Outputs:[0m[0m
+  [32m+[0m [0m[1m[0mload_balancer_output[0m[0m = (known after apply)
