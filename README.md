@@ -5,6 +5,13 @@ Purpose: Use Terraform to provision a web server environment in AWS
 Author: James Downs  
 Date: 8/17/2022  
 
+### Resources
+- VPC  
+- MySQL RDS  
+- NGINX Web server
+- Application Load balancer
+- HTTP Listener
+
 ### Project Structure
 📦EC2_Webapp_With_Terraform  
  ┣ 📂module  
@@ -22,4 +29,3 @@ Date: 8/17/2022
  ┣ 📜main.tf  
  ┗ 📜varaible.tf  
 ---
-
